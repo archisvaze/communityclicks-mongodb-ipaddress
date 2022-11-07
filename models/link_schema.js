@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const communityLinksSchema = new mongoose.Schema({
+    name: {
+        type: String
+    },
+
     ip: {
         type: String,
         required: true

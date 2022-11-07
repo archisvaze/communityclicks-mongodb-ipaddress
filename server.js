@@ -42,9 +42,10 @@ app.get("/", async (req, res) => {
 app.post("/", async (req, res) => {
     const ip = req.ip;
     const id = req.body.id;
+    const name = req.body.name;
 
     let newClick = new CommunityLink({
-        id, ip
+        id, ip, name: name || "Anonymous"
     })
     try {
         let savedClick = await newClick.save();
@@ -59,12 +60,12 @@ app.post("/", async (req, res) => {
 })
 
 
-app.get("/votes", async(req, res) => {
+app.get("/votes", async (req, res) => {
     try {
 
         let clicks = await CommunityLink.find({});
         return res.status(200).json(clicks)
-        
+
     } catch (error) {
         return res.status(400).json({
             error: error.message
