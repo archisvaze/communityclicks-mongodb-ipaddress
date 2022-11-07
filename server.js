@@ -58,3 +58,16 @@ app.post("/", async (req, res) => {
 
 })
 
+
+app.get("/votes", async(req, res) => {
+    try {
+
+        let clicks = await CommunityLink.find({});
+        return res.status(200).json(clicks)
+        
+    } catch (error) {
+        return res.status(400).json({
+            error: error.message
+        })
+    }
+})
